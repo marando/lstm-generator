@@ -6,6 +6,5 @@ models/**/*.data*
 logs/*.log
 
 .idea
-__init__.py
 *.pyc
 *.pkl
