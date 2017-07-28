@@ -1,0 +1,11 @@
+data/*.txt
+models/**/checkpoint
+models/**/*.index
+models/**/*.meta
+models/**/*.data*
+logs/*.log
+
+.idea
+__init__.py
+*.pyc
+*.pkl

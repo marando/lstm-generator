@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+import argparse
+
+import tensorflow as tf
+
+from lib.LSTM import LSTM
+
+
+def main():
+    description = 'LSTM recurrent neural network trainer'
+
+    parser = argparse.ArgumentParser(description=description)
+
+    parser.add_argument('-m',
+                        '--model',
+                        help='name of model to train',
+                        required=True,
+                        nargs=1)
+
+    parser.add_argument('-s',
+                        '--seed',
+                        help='''
+                        a sequence used as a seed to generate the new sequence. 
+                        ''',
+                        required=True,
+                        nargs=1)
+
+    parser.add_argument('-l',
+                        '--length',
+                        help='the generated sequence length',
+                        required=False,
+                        default=[600],
+                        type=int,
+                        nargs=1)
+
+    parser.add_argument('-t',
+                        '--temperature',
+                        help='novelty rate',
+                        required=False,
+                        default=[1.0],
+                        type=int,
+                        nargs=1)
+
+    args = vars(parser.parse_args())
+
+    lstm = LSTM(model=args['model'][0])
+    lstm.generate(seed=args['seed'][0],
+                  seq_len=args['length'][0],
+                  temperature=args['temperature'][0],
+                  display=True)
+
+
+main()
