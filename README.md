@@ -2,7 +2,7 @@
 
 ## How To Use
 
-1. Place your training data in the `data` directory. The training data file must be text format, and the filename must end in .txt*
+1. Place your training data in the `data` directory. The training data file must be a text file, and the filename must end in `.txt`
 
 2. Use `learn` to train the model. Specify the training data with the 
    `-m/--model` argument and do not include the file extension:
