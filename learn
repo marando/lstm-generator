@@ -37,7 +37,7 @@ def main():
                         '--test-length',
                         help='the generated test sequence length',
                         required=False,
-                        default=[50],
+                        default=[600],
                         type=int,
                         nargs=1)
 
