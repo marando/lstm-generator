@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import glob
 import os
 import pickle
 import sys
@@ -61,8 +62,11 @@ class LSTM:
 
     def generate(self, seed, seq_len=600, temperature=1.0, display=True):
         self.seq_maxlen, char_idx = self.load_params()
-        m = self.model_arch(dictionary=char_idx)
+        self.seq_maxlen = len(seed)
 
+        m = self.model_arch(dictionary=char_idx)
+        m.load(self.get_latest_model())
+        
         return m.generate(seq_length=seq_len,
                           temperature=temperature,
                           seq_seed=seed,
@@ -98,6 +102,11 @@ class LSTM:
                                       checkpoint_path=self.checkpoint_path)
 
         return m
+
+    def get_latest_model(self):
+        files = glob.glob(os.path.join('models', self.model, '*.index'))
+        files.sort(reverse=True)
+        return files[0].replace('.index', '')
 
     def save_params(self, params):
         pkl = os.path.join(self.model_path, 'char_idx.pkl')

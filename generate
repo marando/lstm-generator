@@ -38,16 +38,16 @@ def main():
                         help='novelty rate',
                         required=False,
                         default=[1.0],
-                        type=int,
+                        type=float,
                         nargs=1)
 
     args = vars(parser.parse_args())
 
     lstm = LSTM(model=args['model'][0])
-    lstm.generate(seed=args['seed'][0],
-                  seq_len=args['length'][0],
-                  temperature=args['temperature'][0],
-                  display=True)
+    print lstm.generate(seed=args['seed'][0],
+                        seq_len=args['length'][0],
+                        temperature=args['temperature'][0],
+                        display=False)
 
 
 main()
